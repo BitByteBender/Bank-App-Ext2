@@ -34,13 +34,34 @@ namespace displayLib
     return (BorderCounter(" ", (BorderCount / 2) - (HeaderNameCount / 2)));
   }
 
-  void DisplayMenuTop(uint16_t BorderCount, const char *HeaderName)
+  void DisplayMenuTop(const char *Style, uint16_t BorderCount, const char *HeaderName)
   {
-    string MenuBorder = BorderCounter("-", BorderCount), strSpacer = Spacer(CountStr(MenuBorder), CountStr(HeaderName));
+    string MenuBorder = BorderCounter(Style, BorderCount), strSpacer = Spacer(CountStr(MenuBorder), CountStr(HeaderName));
     cout<<MenuBorder<<'\n'
 	<<strSpacer<<HeaderName<<strSpacer<<'\n'
 	<<MenuBorder<<'\n';
-    
   }
 
+
+  void DisplayMenuCore(string Core, uint16_t Spaces)
+  {
+    short pos = 0;
+    string Delim = ", ";
+    
+    while ((pos = Core.find(Delim)) != string::npos) {
+      cout<<BorderCounter(" ", Spaces)<<Core.substr(0, pos)<<'\n';
+      Core.erase(0, pos + Delim.length());
+    }
+
+    if (!Core.empty()) {
+      cout<<BorderCounter(" ", Spaces)<<Core<<'\n';
+    }
+  }
+  
+  void DisplayMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, uint16_t Spaces, string Core)
+  {
+    DisplayMenuTop(Style, BorderCount, HeaderName);
+    DisplayMenuCore(Core, Spaces);
+    cout<<BorderCounter(Style, BorderCount)<<endl;
+  }
 }
