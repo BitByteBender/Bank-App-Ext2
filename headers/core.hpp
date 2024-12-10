@@ -3,6 +3,6 @@
 
 #include <iostream>
 
-void DisplayTableTop(void);
+void DisplayTableTop(const char *Style, uint16_t BorderCount, bool isActive);
 
 #endif /*CORE_H*/

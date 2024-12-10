@@ -5,7 +5,7 @@ using displayLib::DisplayMenuWrapper;
 
 int main(void)
 {
-  DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client");
-  DisplayTableTop();
+  DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client", true);
+  DisplayTableTop("-", 90, false);
   return (0);
 }

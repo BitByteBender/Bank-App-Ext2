@@ -35,11 +35,13 @@ namespace displayLib
     return (BorderCounter(" ", abs((BorderCount / 2) - (HeaderNameCount / 2))));
   }
 
-  void DisplayMenuTop(const char *Style, uint16_t BorderCount, const char *HeaderName)
+  void DisplayMenuTop(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive=false)
   {
     string MenuBorder = BorderCounter(Style, BorderCount), strSpacer = Spacer(CountStr(MenuBorder), CountStr(HeaderName));
-    cout<<MenuBorder<<'\n'
-	<<strSpacer<<HeaderName<<strSpacer<<'\n'
+    cout<<MenuBorder<<'\n';
+    if (isActive)
+      cout<<strSpacer;
+    cout<<HeaderName<<strSpacer<<'\n'
 	<<MenuBorder<<'\n';
   }
 
@@ -59,9 +61,9 @@ namespace displayLib
     }
   }
   
-  void DisplayMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, uint16_t Spaces, string Core)
+  void DisplayMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, uint16_t Spaces, string Core, bool isActive=false)
   {
-    DisplayMenuTop(Style, BorderCount, HeaderName);
+    DisplayMenuTop(Style, BorderCount, HeaderName, isActive);
     DisplayMenuCore(Core, Spaces);
     cout<<BorderCounter(Style, BorderCount)<<endl;
   }
