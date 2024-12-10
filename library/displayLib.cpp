@@ -1,5 +1,6 @@
 #include "../headers/displayLib.hpp"
 #include <iostream>
+#include <cmath>
 
 using std::cout;
 using std::endl;
@@ -21,7 +22,7 @@ namespace displayLib
   {
     uint16_t TotalCount = 0;
 
-    while (str != "") {
+    while (!str.empty()) {
       TotalCount++;
       str.pop_back();
     }
@@ -31,14 +32,16 @@ namespace displayLib
   
   string Spacer(uint16_t BorderCount, uint16_t HeaderNameCount)
   {
-    return (BorderCounter(" ", (BorderCount / 2) - (HeaderNameCount / 2)));
+    return (BorderCounter(" ", abs((BorderCount / 2) - (HeaderNameCount / 2))));
   }
 
-  void DisplayMenuTop(const char *Style, uint16_t BorderCount, const char *HeaderName)
+  void DisplayMenuTop(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive=false)
   {
     string MenuBorder = BorderCounter(Style, BorderCount), strSpacer = Spacer(CountStr(MenuBorder), CountStr(HeaderName));
-    cout<<MenuBorder<<'\n'
-	<<strSpacer<<HeaderName<<strSpacer<<'\n'
+    cout<<MenuBorder<<'\n';
+    if (isActive)
+      cout<<strSpacer;
+    cout<<HeaderName<<strSpacer<<'\n'
 	<<MenuBorder<<'\n';
   }
 
@@ -58,10 +61,10 @@ namespace displayLib
     }
   }
   
-  void DisplayMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, uint16_t Spaces, string Core)
+  void DisplayMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, uint16_t Spaces, string Core, bool isActive=false)
   {
-    DisplayMenuTop(Style, BorderCount, HeaderName);
+    DisplayMenuTop(Style, BorderCount, HeaderName, isActive);
     DisplayMenuCore(Core, Spaces);
     cout<<BorderCounter(Style, BorderCount)<<endl;
   }
-}
+  }
