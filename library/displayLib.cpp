@@ -1,5 +1,6 @@
 #include "../headers/displayLib.hpp"
 #include <iostream>
+#include <cmath>
 
 using std::cout;
 using std::endl;
@@ -21,7 +22,7 @@ namespace displayLib
   {
     uint16_t TotalCount = 0;
 
-    while (str != "") {
+    while (!str.empty()) {
       TotalCount++;
       str.pop_back();
     }
@@ -31,7 +32,7 @@ namespace displayLib
   
   string Spacer(uint16_t BorderCount, uint16_t HeaderNameCount)
   {
-    return (BorderCounter(" ", (BorderCount / 2) - (HeaderNameCount / 2)));
+    return (BorderCounter(" ", abs((BorderCount / 2) - (HeaderNameCount / 2))));
   }
 
   void DisplayMenuTop(const char *Style, uint16_t BorderCount, const char *HeaderName)
@@ -64,4 +65,4 @@ namespace displayLib
     DisplayMenuCore(Core, Spaces);
     cout<<BorderCounter(Style, BorderCount)<<endl;
   }
-}
+  }
