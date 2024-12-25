@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstdint>
 
 using std::cout;
 using std::cin;
