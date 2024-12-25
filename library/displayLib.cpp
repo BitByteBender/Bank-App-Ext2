@@ -1,7 +1,7 @@
 #include "../headers/displayLib.hpp"
 #include <iostream>
 #include <cmath>
-
+#include <cstdint>
 using std::cout;
 using std::endl;
 
