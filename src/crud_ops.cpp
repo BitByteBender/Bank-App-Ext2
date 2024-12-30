@@ -18,7 +18,7 @@ void InsertClients()
     SaveRecToFile(vClients, "Clients.txt");
     vClients.clear();
     */
-    // Saveing Single Record
+    // Saving Single Record
     SaveSingleRecToFile(RecToLine(cl, "#-#"), "Clients.txt");
     Choice = ReadInputs("Do you want to enter a new client(Y/N)? ")[0];
   } while (Choice == 'Y' || Choice == 'y');
