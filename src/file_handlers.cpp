@@ -76,3 +76,5 @@ vector <string> AccNums()
 	 
   return (vAccNums);
 }
+
+// Method to fetch a record with same (AccNum) inside the file then remove it if found!
