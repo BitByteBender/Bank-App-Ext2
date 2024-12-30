@@ -3,12 +3,19 @@
 
 #include <iostream>
 #include <string>
+#include <cstdint>
+#include <vector>
+#include <fstream>
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
 using std::ws;
+using std::to_string;
+using std::vector;
+using std::ios;
+using std::fstream;
 
 struct stClients
 {

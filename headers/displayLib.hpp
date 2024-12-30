@@ -2,6 +2,7 @@
 #define DISPLAYLIB_H
 
 #include <string>
+#include <cstdint>
 
 using std::string;
 
