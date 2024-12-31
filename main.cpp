@@ -21,6 +21,19 @@ int main(void)
   }
   cout<<endl;
 
-  InsertClients();
+  //InsertClients();
+
+  cout<<"\nVerifying duplication: \n";
+  vector <string> vrf = VerifyAccNums("Clients.txt");
+  for (const string &d:vrf) {
+    cout<<d<<'\n';
+  }
+
+  cout<<'\n'<<"Testing File<0 Dupes>"<<'\n';
+  SaveRecToFile(vrf, "0-Dupes_Clients.txt");
+
+  for (const string &c:LoadFromFile("0-Dupes_Clients.txt")) {
+    cout<<c<<'\n';
+  }
   return (0);
 }
