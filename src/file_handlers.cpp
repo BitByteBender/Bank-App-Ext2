@@ -78,3 +78,28 @@ vector <string> AccNums()
 }
 
 // Method to fetch a record with same (AccNum) inside the file then remove it if found!
+string LineFilter(string Record)
+{
+  string Line;
+  return (Line = Record.substr(0, Record.find("#-#")));
+}
+
+vector <string> VerifyAccNums(string fname)
+{
+  vector <string> vClients = LoadFromFile(fname), vNewRecs;
+  
+  for (const string &r:vClients) {
+    short i = 0;
+    vNewRecs.push_back(r);
+    for (const string &an:vNewRecs) {
+      if (LineFilter(r) == LineFilter(an)) ++i;
+      
+      if (i > 1) {
+	vNewRecs.pop_back();
+	break;
+      }
+    }
+  }
+  
+  return (vNewRecs);
+}
