@@ -18,7 +18,7 @@ void SaveRecToFile(vector <string> &vClients, string fname)
 {
   fstream File;
 
-  File.open(fname, ios::out | ios::app);
+  File.open(fname, ios::out);
 
   if (File.is_open()) {
     for (const string &rec:vClients) {
