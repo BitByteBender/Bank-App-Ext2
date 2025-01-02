@@ -29,11 +29,22 @@ int main(void)
     cout<<d<<'\n';
   }
 
-  cout<<'\n'<<"Testing File<0 Dupes>"<<'\n';
+  /* cout<<'\n'<<"Testing File<0 Dupes>"<<'\n';
   SaveRecToFile(vrf, "0-Dupes_Clients.txt");
 
   for (const string &c:LoadFromFile("0-Dupes_Clients.txt")) {
     cout<<c<<'\n';
+  }*/
+
+  cout<<"\nLine to rec: \n"<<endl;
+  vector <stClients> vClients = displayLib::LineToRec(LoadFromFile("0-Dupes_Clients.txt"));
+  for (const stClients &r:vClients) {
+    cout<<"Record: "<<'\n';
+    cout<<r.AccNum<<' ';
+    cout<<r.PinCode<<' ';
+    cout<<r.CName<<' ';
+    cout<<r.Phone<<' ';
+    cout<<r.Balance<<'\n';
   }
   return (0);
 }
