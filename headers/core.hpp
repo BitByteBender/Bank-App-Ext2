@@ -17,6 +17,8 @@ using std::vector;
 using std::ios;
 using std::fstream;
 
+enum enOps { MainMenu = 0, CMenu = 1 };
+
 struct stClients
 {
   string AccNum;
@@ -26,5 +28,5 @@ struct stClients
 };
 
 void DisplayTable(const char *Style, uint16_t BorderCount, bool isActive);
-
+void MenuOperations(uint16_t OperationChoice);
 #endif /*CORE_H*/
