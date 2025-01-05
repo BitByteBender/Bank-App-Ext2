@@ -48,7 +48,6 @@ int main(void)
     cout<<r.Balance<<'\n';
   }
   */
-  
   MenuOperations(stoi(ReadInputs("Enter a choice: ")));
   return (0);
 }
