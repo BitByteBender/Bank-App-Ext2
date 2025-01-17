@@ -12,7 +12,8 @@ string RecToLine(stClients Cl, string DELIM);
 vector <string> AccNums();
 vector <string> VerifyAccNums(string fname);
 string LineFilter(string Record);
-
+uint16_t ClientsCounter();
+ 
 //File Manager
 void SaveRecToFile(vector <string> &vClients, string fname);
 vector <string> LoadFromFile(string fname);
