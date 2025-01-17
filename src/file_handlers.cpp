@@ -104,3 +104,13 @@ vector <string> VerifyAccNums(string fname)
   return (vNewRecs);
 }
 
+uint16_t ClientsCounter()
+{
+  uint16_t counter = 0;
+  
+  for (const string &rec:VerifyAccNums("0-Dupes_Clients.txt")) {
+   if (rec != "") counter++;
+  }
+
+  return (counter);
+}
