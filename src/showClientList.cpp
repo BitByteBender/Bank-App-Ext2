@@ -15,7 +15,7 @@ using displayLib::DisplayMultipleVMenuWrapper;
 void DisplayTable(const char *Style, uint16_t BorderCount, bool isActive=false)
 {
   // For testing must be replaced with a function
-  uint16_t ClientsCount = 0;
+  uint16_t ClientsCount = ClientsCounter();
   const char *strMidHeader = "";
   string strHeader = "Client List (" + to_string(ClientsCount) + ") Client(s).", MenuBorder = BorderCounter(Style, BorderCount);
  

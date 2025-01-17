@@ -7,6 +7,7 @@
 #include <vector>
 #include <fstream>
 
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -17,7 +18,7 @@ using std::vector;
 using std::ios;
 using std::fstream;
 
-enum enOps { MainMenu = 0, CMenu = 1 };
+enum enOps { MainMenu = 0, ClMenu = 1 };
 
 struct stClients
 {
@@ -29,4 +30,6 @@ struct stClients
 
 void DisplayTable(const char *Style, uint16_t BorderCount, bool isActive);
 void MenuOperations(uint16_t OperationChoice);
+void ChoicePicker();
+void SysTrigger();
 #endif /*CORE_H*/
