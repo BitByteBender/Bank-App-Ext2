@@ -8,8 +8,11 @@ void MenuOperations(uint16_t OperationChoice)
     /*case (enOps::MainMenu):
     displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client", true);
     break;*/
-  case (enOps::ClMenu):
+  case (enOps::View):
     DisplayTable("-", 90, false);
+    break;
+  case (enOps::Insert):
+    InsertClients();
     break;
   default:
     cout<<"Nothing Implemented Here\n"<<endl;

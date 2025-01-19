@@ -18,7 +18,7 @@ using std::vector;
 using std::ios;
 using std::fstream;
 
-enum enOps { MainMenu = 0, ClMenu = 1 };
+enum enOps { View = 1, Insert = 2 };
 
 struct stClients
 {
