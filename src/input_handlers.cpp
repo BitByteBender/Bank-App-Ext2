@@ -29,7 +29,7 @@ stClients RecordClientData()
   Cl.PinCode = stoi(ReadInputs("Enter a pin code: "));
   Cl.CName = ReadInputs("Enter full client name: ");
   Cl.Phone = ReadInputs("Enter client phone number: ");
-  Cl.Balance = stod(ReadInputs("Enter client balance :"));
+  Cl.Balance = stod(ReadInputs("Enter client balance: "));
   
   return (Cl);
 }
