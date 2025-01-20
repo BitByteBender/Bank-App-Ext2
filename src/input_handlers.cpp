@@ -11,21 +11,25 @@ string ReadInputs(const char *Msg)
   return (TxtInput);
 }
 
-stClients RecordClientData()
+stClients RecordClientData(bool Trigger=true)
 {
   stClients Cl;
 
-  Cl.AccNum = ReadInputs("Enter account number: ");
-  bool CheckAccNum = true;
+  if (Trigger) {
+    Cl.AccNum = ReadInputs("Enter account number: ");
   
-  while (CheckAccNum) {
-    for (const string &r:AccNums()) {
-      if (Cl.AccNum == r) {
-	Cl.AccNum = ReadInputs("Already Exists! re-Enter account number: ");
-	CheckAccNum = true;
-      } else CheckAccNum = false;
+    bool CheckAccNum = true;
+  
+    while (CheckAccNum) {
+      for (const string &r:AccNums("Clients.txt")) {
+	if (Cl.AccNum == r) {
+	  Cl.AccNum = ReadInputs("Already Exists! re-Enter account number: ");
+	  CheckAccNum = true;
+	} else CheckAccNum = false;
+      }
     }
   }
+  
   Cl.PinCode = stoi(ReadInputs("Enter a pin code: "));
   Cl.CName = ReadInputs("Enter full client name: ");
   Cl.Phone = ReadInputs("Enter client phone number: ");

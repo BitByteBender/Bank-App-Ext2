@@ -64,12 +64,12 @@ vector <string> LoadFromFile(string fname)
   return (vClients);
 }
 
-vector <string> AccNums()
+vector <string> AccNums(string fname)
 {
   vector <string> vAccNums;
   short pos;
   
-  for (const string &ln:LoadFromFile("Clients.txt")) {
+  for (const string &ln:LoadFromFile(fname)) {
     pos = ln.find("#-#");
     vAccNums.push_back(ln.substr(0, pos));
   }
