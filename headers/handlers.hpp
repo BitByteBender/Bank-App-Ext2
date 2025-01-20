@@ -4,12 +4,12 @@
 #include "core.hpp"
 
 string ReadInputs(const char *Msg);
-stClients RecordClientData();
+stClients RecordClientData(bool Trigger);
 
 
 //Helpers
 string RecToLine(stClients Cl, string DELIM);
-vector <string> AccNums();
+vector <string> AccNums(string fname);
 vector <string> VerifyAccNums(string fname);
 string LineFilter(string Record);
 uint16_t ClientsCounter();
@@ -21,4 +21,5 @@ void SaveSingleRecToFile(string Line, string fname);
 
 //Crud Ops
 void InsertClients();
+void UpdateClient();
 #endif /*HANDLERS_H*/
