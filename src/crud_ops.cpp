@@ -28,22 +28,23 @@ void InsertClients()
 
 void UpdateClient()
 {
-  vector <string> vClients = LoadFromFile("0-Dupes_Clients.txt");
+  vector <string> vClients = LoadFromFile("0-Dupes_Clients.txt"), vUpdated;
   string AccNum = ReadInputs("Enter an account number you want to update: ");
   bool doesExist = false;
+  uint16_t i = 0;
   
   for (const string &an:AccNums("0-Dupes_Clients.txt")) {
     if (an == AccNum) {
       cout<<"Found!\n";
-      // 1- Enter new details
-      // 2- Reload the file to a new vector till the found AccNum
-      // 3- Delete record and Insert this updated record
-      // 4- finish adding the rest records
-      // 5- Renew the file
-      doesExist = true;
-      break;      
-    }
+      stClients Client;
+      Client = RecordClientData(false);
+      Client.AccNum = an;
+      vUpdated.push_back(RecToLine(Client, "#-#"));
+      doesExist = true; 
+    } else vUpdated.push_back(vClients[i]);
+    i++;
   }
 
   if (doesExist == false) cout<<"[Warning]>> No Account with this number has been found!";
+  SaveRecToFile(vUpdated, "0-Dupes_Clients.txt");
 }
