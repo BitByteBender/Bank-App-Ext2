@@ -18,7 +18,7 @@ void MenuOperations(uint16_t OperationChoice)
     UpdateClient();
     break;
   case (enOps::Find):
-    FindClient(ReadInputs("Enter an account number you want to check: "));
+    FindClient(ReadInputs("Enter an account number you want to check: "), 0);
     break;
   case (enOps::Exit):
     cout<<"System Terminated!"<<endl;
