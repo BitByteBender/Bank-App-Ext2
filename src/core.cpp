@@ -17,6 +17,9 @@ void MenuOperations(uint16_t OperationChoice)
   case (enOps::Update):
     UpdateClient();
     break;
+  case (enOps::Find):
+    FindClient(ReadInputs("Enter an account number you want to check: "));
+    break;
   case (enOps::Exit):
     cout<<"System Terminated!"<<endl;
     exit(0);
@@ -30,21 +33,21 @@ void ChoicePicker()
 {
   char Choice = ReadInputs(">> Choose from the main menu: ")[0];
 
-  if (uint16_t(Choice) == 52) {
+  if (uint16_t(Choice) == 53) {
     MenuOperations(uint16_t(Choice) - 48);
   } else {
-    if (uint16_t(Choice) > 48 && uint16_t(Choice) <= 51) {
+    if (uint16_t(Choice) > 48 && uint16_t(Choice) <= 52) {
       MenuOperations(uint16_t(Choice) - 48);
       cout<<"\nHit enter to go back to main menu...\n";
       cin.get();
-      displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Exit", true);
+      displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Exit", true);
     } else cout<<"\n[Warning]>> That's not a choice in the main menu!\n";
   }
 }
 
 void SysTrigger()
 {
-  displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Exit", true);
+  displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Exit", true);
   while (true) {
     ChoicePicker();
   }
