@@ -18,7 +18,7 @@ using std::vector;
 using std::ios;
 using std::fstream;
 
-enum enOps { View = 1, Insert = 2 , Update = 3};
+enum enOps { View = 1, Insert = 2 , Update = 3, Exit = 4 };
 
 struct stClients
 {
