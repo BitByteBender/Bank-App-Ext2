@@ -108,10 +108,10 @@ namespace displayLib
     return (vClientRecs);
   }
 
-  void DisplayClientRecord(stClients Client)
+  void DisplayClientRecord(stClients Client, bool Trigger=false)
   {
-    cout<<"Account Number: "<<Client.AccNum<<'\n'
-	<<"Pin code: "<<Client.PinCode<<'\n'
+    if (Trigger == true) cout<<"Account Number: "<<Client.AccNum<<'\n';
+    cout<<"Pin code: "<<Client.PinCode<<'\n'
 	<<"Fullname: "<<Client.CName<<'\n'
 	<<"Phone Number: "<<Client.Phone<<'\n'
 	<<"Balance: "<<Client.Balance<<endl;

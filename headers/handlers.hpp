@@ -22,5 +22,5 @@ void SaveSingleRecToFile(string Line, string fname);
 //Crud Ops
 void InsertClients();
 void UpdateClient();
-bool FindClient(string AccNum);
+short FindClient(string AccNum, short Blocker);
 #endif /*HANDLERS_H*/

@@ -27,17 +27,20 @@ void InsertClients()
   SaveRecToFile(vClients, "0-Dupes_Clients.txt");
 }
 
-bool FindClient(string AccNum)
+short FindClient(string AccNum, short Blocker=0)
 {
   vector <stClients> vstClients = displayLib::LineToRec(LoadFromFile("0-Dupes_Clients.txt"));
+  uint16_t i = 0;
+  
   for (const stClients &rec:vstClients) {
     if (AccNum == rec.AccNum) {
-      displayLib::DisplayClientRecord(rec);
-      return (true);
+      if (Blocker != -1) displayLib::DisplayClientRecord(rec, Blocker);
+      return (i);
     }
+    i++;
   }
   
-  return (false);
+  return (-1);
 }
 
 void UpdateClient()
@@ -45,22 +48,21 @@ void UpdateClient()
   string AccNum = ReadInputs("Enter an account number you want to update: ");  
   
   vector <string> vClients = LoadFromFile("0-Dupes_Clients.txt");
-  uint16_t i = 0;
 
-  if (FindClient(AccNum)) {
-    for (const string &ln:AccNums("0-Dupes_Clients.txt")) {
-      if (ln == AccNum) {	
-	char CommitChecher = ReadInputs("Do you want to update this record (Y | N) ?")[0];
-	if (CommitChecher == 'Y' || CommitChecher == 'y') {
-	  stClients Client;
-	  Client = RecordClientData(false);
-	  Client.AccNum = ln;
-	  vClients[i] = RecToLine(Client, "#-#");
-	}
-      }
-      i++;
+  if (FindClient(AccNum, 0) != -1) {
+    char CommitChecker = ReadInputs("Do you want to update this record (Y | N) ? ")[0];
+    if (CommitChecker == 'Y' || CommitChecker == 'y') {
+      stClients Client;
+      Client = RecordClientData(false);
+      Client.AccNum = AccNum;
+      vClients[FindClient(AccNum, -1)] = RecToLine(Client, "#-#");
     }
-  } else  cout<<"[Warning]>> No Account with this number has been found!";
+  } else cout<<"[Warning]>> No Account with this number has been found!";
 
   SaveRecToFile(vClients, "0-Dupes_Clients.txt");
+}
+
+void DeleteClient()
+{
+  
 }

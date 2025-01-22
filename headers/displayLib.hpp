@@ -23,11 +23,10 @@ namespace displayLib
   stClients SplitLineToRec(vector <string> vChunks);
   vector <string> SplitLine(string Line, string DELIM);
   vector <stClients> LineToRec(vector <string> vLines);
-  void DisplayClientRecord(stClients Client);
+  void DisplayClientRecord(stClients Client, bool Trigger);
   void DisplayMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, uint16_t Spaces, string Core, bool isActive);
   string MenuSpacer(string Val, uint16_t Limiter);
   void DisplayMultipleVMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive);
-  
 }
 
 #endif /* DISPLAYLIB_H */
