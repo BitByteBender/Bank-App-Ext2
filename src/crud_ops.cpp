@@ -1,4 +1,5 @@
 #include "../headers/handlers.hpp"
+#include "../headers/displayLib.hpp"
 #include "../headers/core.hpp"
 
 
@@ -26,25 +27,40 @@ void InsertClients()
   SaveRecToFile(vClients, "0-Dupes_Clients.txt");
 }
 
+bool FindClient(string AccNum)
+{
+  vector <stClients> vstClients = displayLib::LineToRec(LoadFromFile("0-Dupes_Clients.txt"));
+  for (const stClients &rec:vstClients) {
+    if (AccNum == rec.AccNum) {
+      displayLib::DisplayClientRecord(rec);
+      return (true);
+    }
+  }
+  
+  return (false);
+}
+
 void UpdateClient()
 {
-  vector <string> vClients = LoadFromFile("0-Dupes_Clients.txt"), vUpdated;
-  string AccNum = ReadInputs("Enter an account number you want to update: ");
-  bool doesExist = false;
-  uint16_t i = 0;
+  string AccNum = ReadInputs("Enter an account number you want to update: ");  
   
-  for (const string &an:AccNums("0-Dupes_Clients.txt")) {
-    if (an == AccNum) {
-      cout<<"Found!\n";
-      stClients Client;
-      Client = RecordClientData(false);
-      Client.AccNum = an;
-      vUpdated.push_back(RecToLine(Client, "#-#"));
-      doesExist = true; 
-    } else vUpdated.push_back(vClients[i]);
-    i++;
-  }
+  vector <string> vClients = LoadFromFile("0-Dupes_Clients.txt");
+  uint16_t i = 0;
 
-  if (doesExist == false) cout<<"[Warning]>> No Account with this number has been found!";
-  SaveRecToFile(vUpdated, "0-Dupes_Clients.txt");
+  if (FindClient(AccNum)) {
+    for (const string &ln:AccNums("0-Dupes_Clients.txt")) {
+      if (ln == AccNum) {	
+	char CommitChecher = ReadInputs("Do you want to update this record (Y | N) ?")[0];
+	if (CommitChecher == 'Y' || CommitChecher == 'y') {
+	  stClients Client;
+	  Client = RecordClientData(false);
+	  Client.AccNum = ln;
+	  vClients[i] = RecToLine(Client, "#-#");
+	}
+      }
+      i++;
+    }
+  } else  cout<<"[Warning]>> No Account with this number has been found!";
+
+  SaveRecToFile(vClients, "0-Dupes_Clients.txt");
 }

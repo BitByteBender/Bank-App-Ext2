@@ -1,13 +1,5 @@
 #include "../headers/displayLib.hpp"
-/*#include "../headers/handlers.hpp"
-#include <iostream>
-#include <cmath>
-#include <cstdint>
-#include <vector>
 
-using std::cout;
-using std::endl;
-using std::vector;*/
 
 namespace displayLib
 {
@@ -116,6 +108,15 @@ namespace displayLib
     return (vClientRecs);
   }
 
+  void DisplayClientRecord(stClients Client)
+  {
+    cout<<"Account Number: "<<Client.AccNum<<'\n'
+	<<"Pin code: "<<Client.PinCode<<'\n'
+	<<"Fullname: "<<Client.CName<<'\n'
+	<<"Phone Number: "<<Client.Phone<<'\n'
+	<<"Balance: "<<Client.Balance<<endl;
+  }
+  
   string MenuSpacer(string Val, uint16_t Limiter)
   {
     string Container = Val;
