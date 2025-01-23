@@ -64,6 +64,7 @@ vector <string> MultiFunc(string FuncChoice)
     } else cout<<FuncChoice+" has been Terminated!"<<endl;
   } else cout<<"[Warning]>> No Account with this number has been found!";
 
+  SaveRecToFile(vClients, "0-Dupes_Clients.txt");
   return (vClients);
 }
 
@@ -88,8 +89,7 @@ void UpdateClient()
   
   SaveRecToFile(vClients, "0-Dupes_Clients.txt");
   */
-  vector <string> vClients = MultiFunc("update");
-  SaveRecToFile(vClients, "0-Dupes_Clients.txt");
+  MultiFunc("update");
 }
 
 void DeleteClient()
@@ -108,6 +108,5 @@ void DeleteClient()
 
   SaveRecToFile(vClients, "0-Dupes_Clients.txt");
   */
-  vector <string> vClients = MultiFunc("delete");
-  SaveRecToFile(vClients, "0-Dupes_Clients.txt");
+  MultiFunc("delete");
 }
