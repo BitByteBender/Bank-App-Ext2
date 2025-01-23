@@ -56,7 +56,8 @@ void UpdateClient()
       Client = RecordClientData(false);
       Client.AccNum = AccNum;
       vClients[FindClient(AccNum, -1)] = RecToLine(Client, "#-#");
-    }
+      cout<<"Account ["<<AccNum<<"] has been updated successfully!"<<endl;
+    } else cout<<"Update has been Terminated!"<<endl;
   } else cout<<"[Warning]>> No Account with this number has been found!";
 
   SaveRecToFile(vClients, "0-Dupes_Clients.txt");
@@ -64,5 +65,16 @@ void UpdateClient()
 
 void DeleteClient()
 {
-  
+  string AccNum = ReadInputs("Enter an account number you want to update: ");
+  vector <string> vClients = LoadFromFile("0-Dupes_Clients.txt");
+
+  if (FindClient(AccNum, 0) != -1) {
+    char CommitDeletion = ReadInputs("Do you want to delete this record (Y | N) ? ")[0];
+    if (CommitDeletion == 'y' || CommitDeletion == 'Y') {
+      vClients[FindClient(AccNum, -1)] = "";
+      cout<<"Account ["<<AccNum<<"] has been deleted successfully!"<<endl;
+    } else cout<<"Deletion has been terminted!"<<endl;
+  } else cout<<"[Warning]>> No Account with this Number has been found!";
+
+  SaveRecToFile(vClients, "0-Dupes_Clients.txt");
 }

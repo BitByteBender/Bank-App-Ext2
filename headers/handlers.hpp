@@ -23,4 +23,5 @@ void SaveSingleRecToFile(string Line, string fname);
 void InsertClients();
 void UpdateClient();
 short FindClient(string AccNum, short Blocker);
+void DeleteClient();
 #endif /*HANDLERS_H*/
