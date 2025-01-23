@@ -43,8 +43,33 @@ short FindClient(string AccNum, short Blocker=0)
   return (-1);
 }
 
+vector <string> MultiFunc(string FuncChoice)
+{
+  string Msg = "Enter an account number you want to "+FuncChoice+": ";
+  string AccNum = ReadInputs(Msg.c_str());
+  
+  vector <string> vClients = LoadFromFile("0-Dupes_Clients.txt");
+
+  if (FindClient(AccNum, 0) != -1) {
+    char CommitChecker = ReadInputs(("Do you want to "+FuncChoice+" this record (Y | N) ? ").c_str())[0];
+    if (FuncChoice == "update" && (CommitChecker == 'Y' || CommitChecker == 'y')) {
+      stClients Client;
+      Client = RecordClientData(false);
+      Client.AccNum = AccNum;
+      vClients[FindClient(AccNum, -1)] = RecToLine(Client, "#-#");
+      cout<<"Account ["<<AccNum<<"] has been updated successfully!"<<endl;
+    } else if (FuncChoice == "delete" && (CommitChecker == 'Y' || CommitChecker == 'y')) {
+      vClients[FindClient(AccNum, -1)] = "";
+      cout<<"Account ["<<AccNum<<"] has been deleted successfully!"<<endl;
+    } else cout<<FuncChoice+" has been Terminated!"<<endl;
+  } else cout<<"[Warning]>> No Account with this number has been found!";
+
+  return (vClients);
+}
+
 void UpdateClient()
 {
+  /*
   string AccNum = ReadInputs("Enter an account number you want to update: ");  
   
   vector <string> vClients = LoadFromFile("0-Dupes_Clients.txt");
@@ -59,12 +84,17 @@ void UpdateClient()
       cout<<"Account ["<<AccNum<<"] has been updated successfully!"<<endl;
     } else cout<<"Update has been Terminated!"<<endl;
   } else cout<<"[Warning]>> No Account with this number has been found!";
-
+  
+  
+  SaveRecToFile(vClients, "0-Dupes_Clients.txt");
+  */
+  vector <string> vClients = MultiFunc("update");
   SaveRecToFile(vClients, "0-Dupes_Clients.txt");
 }
 
 void DeleteClient()
 {
+  /*
   string AccNum = ReadInputs("Enter an account number you want to update: ");
   vector <string> vClients = LoadFromFile("0-Dupes_Clients.txt");
 
@@ -76,5 +106,8 @@ void DeleteClient()
     } else cout<<"Deletion has been terminted!"<<endl;
   } else cout<<"[Warning]>> No Account with this Number has been found!";
 
+  SaveRecToFile(vClients, "0-Dupes_Clients.txt");
+  */
+  vector <string> vClients = MultiFunc("delete");
   SaveRecToFile(vClients, "0-Dupes_Clients.txt");
 }
