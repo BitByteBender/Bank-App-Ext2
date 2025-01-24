@@ -111,8 +111,46 @@ void DeleteClient()
   MultiFunc("delete");
 }
 
+double CalcTrx(double NumA, double NumB)
+{
+  return (NumA += NumB);
+}
+
+vector <stClients> WithdrawOrDeposit(string TrxChoice)
+{
+  string AccNum = ReadInputs("Please enter a valid AccountNumber: ");
+  vector <stClients> vClients = displayLib::LineToRec(LoadFromFile("0-Dupes_Clients.txt"));
+  
+  do {
+    if (FindClient(AccNum, 1) != -1) {
+      double DepositAmount = stod(ReadInputs(("Please enter a "+TrxChoice+" amount? ").c_str()));
+      char Commit = ReadInputs("Are you sure you want to perform this transactions? (y/n) ")[0];
+      if (Commit == 'Y' || Commit == 'y') {
+	if (TrxChoice == "deposit")
+	  vClients[FindClient(AccNum, -1)].Balance = CalcTrx(vClients[FindClient(AccNum, -1)].Balance, DepositAmount);
+	else {
+	  if (TrxChoice == "withdraw" && CalcTrx(vClients[FindClient(AccNum, -1)].Balance, (DepositAmount * -1)) >= 0)
+	    vClients[FindClient(AccNum, -1)].Balance = CalcTrx(vClients[FindClient(AccNum, -1)].Balance, (DepositAmount * -1));
+	  else {
+	    cout<<"\nYou don't have enough balance!\n"<<endl;
+	    continue;
+	  }
+	}
+	cout<<"\nAccount ["<<vClients[FindClient(AccNum, -1)].AccNum
+	    <<"] has a new "<<TrxChoice<<"!"<<'\n'
+	    <<">> New Balance of ["<<vClients[FindClient(AccNum, -1)].AccNum<<"] is: "
+	    <<vClients[FindClient(AccNum, -1)].Balance<<endl;
+      }
+      break;
+    } else AccNum = ReadInputs("Please re-enter a valid AccountNumber: ");
+  } while (true);
+
+  return (vClients);
+}
+
 void DepositToAccount()
 {
+  /*
   string AccNum = ReadInputs("Please enter a valid AccountNumber: ");
   vector <string> vNewRecs;
   vector <stClients> vClients = displayLib::LineToRec(LoadFromFile("0-Dupes_Clients.txt"));
@@ -122,7 +160,7 @@ void DepositToAccount()
       double DepositAmount = stod(ReadInputs("Please enter a deposit amount? "));
       char Commit = ReadInputs("Are you sure you want to perform this transactions? (y/n) ")[0];
       if (Commit == 'Y' || Commit == 'y') {
-	vClients[FindClient(AccNum, -1)].Balance += DepositAmount;
+	vClients[FindClient(AccNum, -1)].Balance = CalcTrx(vClients[FindClient(AccNum, -1)].Balance, DepositAmount);
 	cout<<"\nAccount ["<<vClients[FindClient(AccNum, -1)].AccNum
 	    <<"] has a new Deposit!"<<'\n'
 	    <<">> New Balance of ["<<vClients[FindClient(AccNum, -1)].AccNum<<"] is: "
@@ -132,6 +170,40 @@ void DepositToAccount()
     } else AccNum = ReadInputs("Please re-enter a valid AccountNumber: ");
   } while (true);
 
+  vNewRecs = RecsToLines(vClients);
+  */
+  vector <stClients> vClients = WithdrawOrDeposit("deposit");
+  vector <string> vNewRecs;
+  
+  vNewRecs = RecsToLines(vClients);
+  SaveRecToFile(vNewRecs, "0-Dupes_Clients.txt");
+}
+
+void WithdrawFromAccount()
+{
+  /*
+  string AccNum = ReadInputs("Please enter a valid AccountNumber: ");
+  vector <string> vNewRecs;
+  vector <stClients> vClients = displayLib::LineToRec(LoadFromFile("0-Dupes_Clients.txt"));
+  
+  do {
+    if (FindClient(AccNum, 1) != -1) {
+      double WithdrawAmount = stod(ReadInputs("Please enter a withdraw amount? "));
+      char Commit = ReadInputs("Are you sure you want to perform this transactions? (y/n) ")[0];
+      if (Commit == 'Y' || Commit == 'y') {
+	vClients[FindClient(AccNum, -1)].Balance = CalcTrx(vClients[FindClient(AccNum, -1)].Balance, (WithdrawAmount * -1));
+	cout<<"\nAccount ["<<vClients[FindClient(AccNum, -1)].AccNum
+	    <<"] has a new Withdraw!"<<'\n'
+	    <<">> New Balance of ["<<vClients[FindClient(AccNum, -1)].AccNum<<"] is: "
+	    <<vClients[FindClient(AccNum, -1)].Balance<<endl;
+      }
+      break;
+    } else AccNum = ReadInputs("Please re-enter a valid AccountNumber: ");
+  } while (true);
+  */
+  vector <stClients> vClients = WithdrawOrDeposit("withdraw");
+  vector <string> vNewRecs;
+  
   vNewRecs = RecsToLines(vClients);
   SaveRecToFile(vNewRecs, "0-Dupes_Clients.txt");
 }

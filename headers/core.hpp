@@ -20,7 +20,7 @@ using std::fstream;
 
 enum enOps { View = 1, Insert = 2 , Update = 3, Find = 4, Delete = 5, Trx = 6, Exit = 7 };
 
-enum enTrxOps { Deposit = 1, Withdraw = 2, ViewBalances = 3, MainMenu = 4};
+enum enTrxOps { Deposit = 1, Withdraw = 2, ViewBalances = 3};
 
 struct stClients
 {

@@ -26,4 +26,5 @@ void UpdateClient();
 short FindClient(string AccNum, short Blocker);
 void DeleteClient();
 void DepositToAccount();
+void WithdrawFromAccount();
 #endif /*HANDLERS_H*/
