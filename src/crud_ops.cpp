@@ -136,10 +136,8 @@ vector <stClients> WithdrawOrDeposit(string TrxChoice)
 	    continue;
 	  }
 	}
-	cout<<"\nAccount ["<<vClients[FindClient(AccNum, -1)].AccNum
-	    <<"] has a new "<<TrxChoice<<"!"<<'\n'
-	    <<">> New Balance of ["<<vClients[FindClient(AccNum, -1)].AccNum<<"] is: "
-	    <<vClients[FindClient(AccNum, -1)].Balance<<endl;
+
+	displayLib::DisplayEndResutl(vClients[FindClient(AccNum, -1)].AccNum, TrxChoice, vClients[FindClient(AccNum, -1)].Balance);
       }
       break;
     } else AccNum = ReadInputs("Please re-enter a valid AccountNumber: ");

@@ -30,7 +30,7 @@ struct stClients
   double Balance;
 };
 
-void DisplayTable(const char *Style, uint16_t BorderCount, bool isActive);
+void DisplayTable(const char *TableType, const char *Style, uint16_t BorderCount, bool isActive, bool Toggle);
 
 //Main Menu
 void MenuOperations(uint16_t OperationChoice);

@@ -129,19 +129,33 @@ namespace displayLib
     return (Container);
   }
   
-  void DisplayMultipleVMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive=false)
+  void DisplayMultipleVMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive=false, bool Toggle=true)
   {
     vector <stClients> vClients = displayLib::LineToRec(LoadFromFile("0-Dupes_Clients.txt"));
     DisplayMenuTop(Style, BorderCount, HeaderName, isActive);
 
     for (const stClients &r:vClients) {
-      cout<<"  "<<MenuSpacer(r.AccNum, 17);
-      cout<<" "<<MenuSpacer(to_string(r.PinCode), 12);
-      cout<<" "<<MenuSpacer(r.CName, 19);
-      cout<<" "<<MenuSpacer(r.Phone, 19);
-      cout<<" "<<r.Balance<<'\n';
+      if (Toggle) {
+	cout<<"  "<<MenuSpacer(r.AccNum, 17);
+	cout<<" "<<MenuSpacer(to_string(r.PinCode), 12);
+	cout<<" "<<MenuSpacer(r.CName, 19);
+	cout<<" "<<MenuSpacer(r.Phone, 19);
+	cout<<" "<<r.Balance<<'\n';
+      } else {
+	cout<<"  "<<MenuSpacer(r.AccNum, 20);
+	cout<<" "<<MenuSpacer(r.CName, 30);
+	cout<<" "<<r.Balance<<'\n';
+      }
     }
     
     cout<<BorderCounter(Style, BorderCount)<<endl;
+  }
+
+  void DisplayEndResutl(string AccNum, string Choice, uint16_t Balance)
+  {
+    cout<<"\nAccount ["<<AccNum
+	<<"] has a new "<<Choice<<"!"<<'\n'
+	<<">> New Balance of ["<<AccNum<<"] is: "
+	<<Balance<<endl;
   }
   }

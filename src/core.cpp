@@ -10,7 +10,7 @@ void MenuOperations(uint16_t OperationChoice)
     displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client", true);
     break;*/
   case (enOps::View):
-    DisplayTable("-", 90, false);
+    DisplayTable("Clients", "-", 90, false, true);
     break;
   case (enOps::Insert):
     InsertClients();

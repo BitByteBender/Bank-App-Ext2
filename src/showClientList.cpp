@@ -12,15 +12,19 @@ using displayLib::CountStr;
 using displayLib::DisplayMenuWrapper;
 using displayLib::DisplayMultipleVMenuWrapper;
 
-void DisplayTable(const char *Style, uint16_t BorderCount, bool isActive=false)
+void DisplayTable(const char *TableType, const char *Style, uint16_t BorderCount, bool isActive=false, bool Toggle=true)
 {
-  // For testing must be replaced with a function
-  uint16_t ClientsCount = ClientsCounter();
+  uint16_t Count = ClientsCounter();
   const char *strMidHeader = "";
-  string strHeader = "Client List (" + to_string(ClientsCount) + ") Client(s).", MenuBorder = BorderCounter(Style, BorderCount);
+  string strHeader(TableType), MenuBorder = BorderCounter(Style, BorderCount);;
+  strHeader += " List (" + to_string(Count) + ") Client(s).";
  
   cout<<Spacer(CountStr(MenuBorder), CountStr(strHeader))<<strHeader<<'\n';
+
+  if (Toggle == true)
+    strMidHeader = "| Account Number  | Pin Code   | Client Name       | Phone             | Balance    ";
+  else
+    strMidHeader = "| Account Number     | Client Name                  | Balance    ";
   
-  strMidHeader = "| Account Number  | Pin Code   | Client Name       | Phone             | Balance    ";
-  DisplayMultipleVMenuWrapper(Style, BorderCount, strMidHeader, isActive);
+  DisplayMultipleVMenuWrapper(Style, BorderCount, strMidHeader, isActive, Toggle);
 }
