@@ -13,7 +13,8 @@ vector <string> AccNums(string fname);
 vector <string> VerifyAccNums(string fname);
 string LineFilter(string Record);
 uint16_t ClientsCounter();
-
+vector <string> RecsToLines(vector <stClients> &vClients);
+  
 //File Manager
 void SaveRecToFile(vector <string> &vClients, string fname);
 vector <string> LoadFromFile(string fname);
@@ -24,4 +25,5 @@ void InsertClients();
 void UpdateClient();
 short FindClient(string AccNum, short Blocker);
 void DeleteClient();
+void DepositToAccount();
 #endif /*HANDLERS_H*/

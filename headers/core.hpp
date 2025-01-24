@@ -18,7 +18,9 @@ using std::vector;
 using std::ios;
 using std::fstream;
 
-enum enOps { View = 1, Insert = 2 , Update = 3, Find = 4, Delete = 5, Exit = 6 };
+enum enOps { View = 1, Insert = 2 , Update = 3, Find = 4, Delete = 5, Trx = 6, Exit = 7 };
+
+enum enTrxOps { Deposit = 1, Withdraw = 2, ViewBalances = 3, MainMenu = 4};
 
 struct stClients
 {
@@ -29,7 +31,14 @@ struct stClients
 };
 
 void DisplayTable(const char *Style, uint16_t BorderCount, bool isActive);
+
+//Main Menu
 void MenuOperations(uint16_t OperationChoice);
 void ChoicePicker();
+
+//Trx Menu
+void TrxMenu(uint16_t OperationChoice);
+void ChoicePicker();
+
 void SysTrigger();
 #endif /*CORE_H*/
