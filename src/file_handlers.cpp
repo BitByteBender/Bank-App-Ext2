@@ -14,6 +14,17 @@ string RecToLine(stClients Cl, string DELIM)
   return (Line);
 }
 
+vector <string> RecsToLines(vector <stClients> &vClients)
+{
+  vector <string> vLines;
+
+  for (const stClients &rec:vClients) {
+    vLines.push_back(RecToLine(rec, "#-#"));
+  }
+  
+  return (vLines);
+}
+
 void SaveRecToFile(vector <string> &vClients, string fname)
 {
   fstream File;
