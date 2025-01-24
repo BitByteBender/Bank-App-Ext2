@@ -110,3 +110,28 @@ void DeleteClient()
   */
   MultiFunc("delete");
 }
+
+void DepositToAccount()
+{
+  string AccNum = ReadInputs("Please enter a valid AccountNumber: ");
+  vector <string> vNewRecs;
+  vector <stClients> vClients = displayLib::LineToRec(LoadFromFile("0-Dupes_Clients.txt"));
+  
+  do {
+    if (FindClient(AccNum, 1) != -1) {
+      double DepositAmount = stod(ReadInputs("Please enter a deposit amount? "));
+      char Commit = ReadInputs("Are you sure you want to perform this transactions? (y/n) ")[0];
+      if (Commit == 'Y' || Commit == 'y') {
+	vClients[FindClient(AccNum, -1)].Balance += DepositAmount;
+	cout<<"\nAccount ["<<vClients[FindClient(AccNum, -1)].AccNum
+	    <<"] has a new Deposit!"<<'\n'
+	    <<">> New Balance of ["<<vClients[FindClient(AccNum, -1)].AccNum<<"] is: "
+	    <<vClients[FindClient(AccNum, -1)].Balance<<endl;
+      }
+      break;
+    } else AccNum = ReadInputs("Please re-enter a valid AccountNumber: ");
+  } while (true);
+
+  vNewRecs = RecsToLines(vClients);
+  SaveRecToFile(vNewRecs, "0-Dupes_Clients.txt");
+}

@@ -3,7 +3,8 @@
 
 void MenuOperations(uint16_t OperationChoice)
 {
-
+  string InputStr;
+  
   switch (OperationChoice) {
     /*case (enOps::MainMenu):
     displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client", true);
@@ -18,10 +19,15 @@ void MenuOperations(uint16_t OperationChoice)
     UpdateClient();
     break;
   case (enOps::Find):
-    FindClient(ReadInputs("Enter an account number you want to check: "), 0);
+    InputStr = "Enter an account number you want to check: ";
+    FindClient(ReadInputs(InputStr.c_str()), 0);
     break;
   case (enOps::Delete):
     DeleteClient();
+    break;
+  case (enOps::Trx):
+    InputStr = ReadInputs("Choose? ");
+    TrxMenu(stoi(InputStr));
     break;
   case (enOps::Exit):
     cout<<"System Terminated!"<<endl;
@@ -36,21 +42,21 @@ void ChoicePicker()
 {
   char Choice = ReadInputs(">> Choose from the main menu: ")[0];
 
-  if (uint16_t(Choice) == 54) {
+  if (uint16_t(Choice) == 55) {
     MenuOperations(uint16_t(Choice) - 48);
   } else {
-    if (uint16_t(Choice) > 48 && uint16_t(Choice) <= 53) {
+    if (uint16_t(Choice) > 48 && uint16_t(Choice) <= 54) {
       MenuOperations(uint16_t(Choice) - 48);
       cout<<"\nHit enter to go back to main menu...\n";
       cin.get();
-      displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Delete Client, 6: Exit", true);
+      displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Delete Client, 6: Transactions, 7: Exit", true);
     } else cout<<"\n[Warning]>> That's not a choice in the main menu!\n";
   }
 }
 
 void SysTrigger()
 {
-  displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Delete Client, 6: Exit", true);
+  displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Delete Client, 6: Transactions, 7: Exit", true);
   while (true) {
     ChoicePicker();
   }
