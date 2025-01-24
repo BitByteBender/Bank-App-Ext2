@@ -26,7 +26,8 @@ namespace displayLib
   void DisplayClientRecord(stClients Client, bool Trigger);
   void DisplayMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, uint16_t Spaces, string Core, bool isActive);
   string MenuSpacer(string Val, uint16_t Limiter);
-  void DisplayMultipleVMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive);
+  void DisplayMultipleVMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive, bool Toggle);
+  void DisplayEndResutl(string AccNum, string Choice, uint16_t Balance);
 }
 
 #endif /* DISPLAYLIB_H */

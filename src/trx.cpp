@@ -11,6 +11,7 @@ void TrxMenu(uint16_t OperationChoice)
     WithdrawFromAccount();
     break;
   case (enTrxOps::ViewBalances):
+    DisplayTable("Balances", "-", 90, false, false);
     break;
   default:
     cout<<"Nothing is built yet!"<<endl;
