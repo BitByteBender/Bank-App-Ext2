@@ -26,8 +26,8 @@ void MenuOperations(uint16_t OperationChoice)
     DeleteClient();
     break;
   case (enOps::Trx):
-    InputStr = ReadInputs("Choose? ");
-    TrxMenu(stoi(InputStr));
+    //InputStr = ReadInputs("Choose? ");
+    TrxMenuTrigger();
     break;
   case (enOps::Exit):
     cout<<"System Terminated!"<<endl;
