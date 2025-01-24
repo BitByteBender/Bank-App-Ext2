@@ -38,7 +38,7 @@ void ChoicePicker();
 
 //Trx Menu
 void TrxMenu(uint16_t OperationChoice);
-void ChoicePicker();
+void TrxMenuTrigger();
 
 void SysTrigger();
 #endif /*CORE_H*/
