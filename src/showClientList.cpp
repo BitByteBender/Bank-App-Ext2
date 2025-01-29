@@ -11,13 +11,15 @@ using displayLib::Spacer;
 using displayLib::CountStr;
 using displayLib::DisplayMenuWrapper;
 using displayLib::DisplayMultipleVMenuWrapper;
+using displayLib::DisplayMultipleVMenuWrapperV2;
 
 void DisplayTable(const char *TableType, const char *Style, uint16_t BorderCount, bool isActive=false, bool Toggle=true)
 {
-  uint16_t Count = ClientsCounter();
+  vector <string> vRec = VerifyAccNums("0-Dupes_Clients.txt");
+  uint16_t ClientsCount = RecCounter(vRec);
   const char *strMidHeader = "";
   string strHeader(TableType), MenuBorder = BorderCounter(Style, BorderCount);;
-  strHeader += " List (" + to_string(Count) + ") Client(s).";
+  strHeader += " List (" + to_string(ClientsCount) + ") Client(s).";
  
   cout<<Spacer(CountStr(MenuBorder), CountStr(strHeader))<<strHeader<<'\n';
 
@@ -27,4 +29,18 @@ void DisplayTable(const char *TableType, const char *Style, uint16_t BorderCount
     strMidHeader = "| Account Number     | Client Name                  | Balance    ";
   
   DisplayMultipleVMenuWrapper(Style, BorderCount, strMidHeader, isActive, Toggle);
+}
+
+void DisplayTrxTable(const char *Style, uint16_t BorderCount, bool isActive=false)
+{
+  vector <string> vRec = LoadFromFile("0-Trx.txt");
+  uint16_t TrxCount = RecCounter(vRec);
+
+  string TabTop, TabHeader = "Transactions List ("+to_string(TrxCount)+") Done.";
+
+  cout<<"\n\n"<<Spacer(CountStr(BorderCounter(Style, BorderCount)), CountStr(TabHeader))
+      <<TabHeader<<'\n';
+
+  TabTop = "| Account Number    | In/out          | Trx Type       | New Balance    ";
+  DisplayMultipleVMenuWrapperV2(Style, BorderCount, TabTop.c_str(), isActive);
 }
