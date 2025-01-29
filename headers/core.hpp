@@ -20,7 +20,7 @@ using std::fstream;
 
 enum enOps { View = 1, Insert = 2 , Update = 3, Find = 4, Delete = 5, Trx = 6, Exit = 7 };
 
-enum enTrxOps { Deposit = 1, Withdraw = 2, ViewBalances = 3};
+enum enTrxOps { Deposit = 1, Withdraw = 2, ViewBalances = 3, TRXs = 4};
 
 struct stClients
 {
@@ -31,6 +31,7 @@ struct stClients
 };
 
 void DisplayTable(const char *TableType, const char *Style, uint16_t BorderCount, bool isActive, bool Toggle);
+void DisplayTrxTable(const char *Style, uint16_t BorderCount, bool isActive);
 
 //Main Menu
 void MenuOperations(uint16_t OperationChoice);

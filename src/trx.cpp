@@ -14,7 +14,7 @@ void TrxMenu(uint16_t OperationChoice)
     DisplayTable("Balances", "-", 90, false, false);
     break;
   case (enTrxOps::TRXs):
-    DisplayTrxTable("-", 90, false);
+    DisplayTrxTable("-", 80, false);
     break;
   default:
     cout<<"Nothing is built yet!"<<endl;

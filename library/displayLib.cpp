@@ -108,6 +108,30 @@ namespace displayLib
     return (vClientRecs);
   }
 
+  string SplitChunks(vector <string> Line)
+  {
+    string Ln;
+
+    Ln = MenuSpacer(Line[0], 20);
+    Ln += MenuSpacer(Line[1], 18);
+    Ln += MenuSpacer(Line[2], 17);
+    Ln += Line[3];
+ 
+    return (Ln);
+  }
+  
+  vector <string> vTrx(vector <string> vLines)
+  {
+    vector <string> vTrx;
+    vector <string>::iterator iter;
+
+    for (iter = vLines.begin(); iter != vLines.end(); iter++) {
+      vTrx.push_back(SplitChunks(SplitLine(*iter, "#-#")));
+    }
+
+    return (vTrx);
+  }
+  
   void DisplayClientRecord(stClients Client, bool Trigger=false)
   {
     if (Trigger == true) cout<<"Account Number: "<<Client.AccNum<<'\n';
@@ -128,7 +152,7 @@ namespace displayLib
     
     return (Container);
   }
-  
+
   void DisplayMultipleVMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive=false, bool Toggle=true)
   {
     vector <stClients> vClients = displayLib::LineToRec(LoadFromFile("0-Dupes_Clients.txt"));
@@ -146,6 +170,18 @@ namespace displayLib
 	cout<<" "<<MenuSpacer(r.CName, 30);
 	cout<<" "<<r.Balance<<'\n';
       }
+    }
+    
+    cout<<BorderCounter(Style, BorderCount)<<endl;
+  }
+
+  void DisplayMultipleVMenuWrapperV2(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive=false)
+  {
+    vector <string> vTrx = displayLib::vTrx(LoadFromFile("0-Trx.txt"));
+    DisplayMenuTop(Style, BorderCount, HeaderName, isActive);
+
+    for (const string &r:vTrx) {
+      cout<<"  "<<r<<'\n';
     }
     
     cout<<BorderCounter(Style, BorderCount)<<endl;
