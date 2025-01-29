@@ -115,11 +115,23 @@ vector <string> VerifyAccNums(string fname)
   return (vNewRecs);
 }
 
-uint16_t ClientsCounter()
+string TrxLines(stClients Cl, string Amount, string DELIM)
+{
+  string Line;
+  
+  Line = Cl.AccNum + DELIM;
+  Line += Amount + DELIM;
+  Line += (Amount[0] == '+' ? "Deposit" : "Withdraw") + DELIM;
+  Line += to_string(Cl.Balance);
+    
+  return (Line);
+}
+
+uint16_t RecCounter(vector <string> &vRec)
 {
   uint16_t counter = 0;
   
-  for (const string &rec:VerifyAccNums("0-Dupes_Clients.txt")) {
+  for (const string &rec:vRec) {
    if (rec != "") counter++;
   }
 

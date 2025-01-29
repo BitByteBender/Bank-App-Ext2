@@ -116,6 +116,11 @@ double CalcTrx(double NumA, double NumB)
   return (NumA += NumB);
 }
 
+string GetAmount(double oBalance, double nBalance, double Amount)
+{
+  return (oBalance < nBalance ? "+"+to_string(Amount) : "-"+to_string(Amount));
+}
+
 vector <stClients> WithdrawOrDeposit(string TrxChoice)
 {
   string AccNum = ReadInputs("Please enter a valid AccountNumber: ");
@@ -126,6 +131,8 @@ vector <stClients> WithdrawOrDeposit(string TrxChoice)
       double DepositAmount = stod(ReadInputs(("Please enter a "+TrxChoice+" amount? ").c_str()));
       char Commit = ReadInputs("Are you sure you want to perform this transactions? (y/n) ")[0];
       if (Commit == 'Y' || Commit == 'y') {
+	const double RecordOldBalance = vClients[FindClient(AccNum, -1)].Balance;
+	
 	if (TrxChoice == "deposit")
 	  vClients[FindClient(AccNum, -1)].Balance = CalcTrx(vClients[FindClient(AccNum, -1)].Balance, DepositAmount);
 	else {
@@ -137,6 +144,7 @@ vector <stClients> WithdrawOrDeposit(string TrxChoice)
 	  }
 	}
 
+	SaveSingleRecToFile(TrxLines(vClients[FindClient(AccNum, -1)], GetAmount(RecordOldBalance, vClients[FindClient(AccNum, -1)].Balance, DepositAmount), "#-#"), "0-Trx.txt");
 	displayLib::DisplayEndResutl(vClients[FindClient(AccNum, -1)].AccNum, TrxChoice, vClients[FindClient(AccNum, -1)].Balance);
       }
       break;

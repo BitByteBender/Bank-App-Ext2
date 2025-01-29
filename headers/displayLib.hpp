@@ -28,6 +28,7 @@ namespace displayLib
   string MenuSpacer(string Val, uint16_t Limiter);
   void DisplayMultipleVMenuWrapper(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive, bool Toggle);
   void DisplayEndResutl(string AccNum, string Choice, uint16_t Balance);
+  void DisplayMultipleVMenuWrapperV2(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive);
 }
 
 #endif /* DISPLAYLIB_H */
