@@ -194,4 +194,4 @@ namespace displayLib
 	<<">> New Balance of ["<<AccNum<<"] is: "
 	<<Balance<<endl;
   }
-  }
+ }
