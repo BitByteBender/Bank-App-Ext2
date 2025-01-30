@@ -18,7 +18,7 @@ using std::vector;
 using std::ios;
 using std::fstream;
 
-enum enOps { View = 1, Insert = 2 , Update = 3, Find = 4, Delete = 5, Trx = 6, Exit = 7 };
+enum enOps { View = 1, Insert = 2 , Update = 3, Find = 4, Delete = 5, Trx = 6, UsrManager = 7, Logout = 8 };
 
 enum enTrxOps { Deposit = 1, Withdraw = 2, ViewBalances = 3, TRXs = 4};
 
@@ -28,6 +28,12 @@ struct stClients
   uint16_t PinCode;
   string CName, Phone;
   double Balance;
+};
+
+struct stUsers
+{
+  string Username, Passwd;
+  int16_t Permissions = -1;
 };
 
 void DisplayTable(const char *TableType, const char *Style, uint16_t BorderCount, bool isActive, bool Toggle);

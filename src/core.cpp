@@ -29,7 +29,12 @@ void MenuOperations(uint16_t OperationChoice)
     //InputStr = ReadInputs("Choose? ");
     TrxMenuTrigger();
     break;
-  case (enOps::Exit):
+  case (enOps::UsrManager):
+    //Missing implementation
+    cout<<"Still under development!\n"<<endl;
+    break;
+  case (enOps::Logout):
+    //This needs to be rerouted to a user login page
     cout<<"System Terminated!"<<endl;
     exit(0);
   default:
@@ -42,21 +47,21 @@ void ChoicePicker()
 {
   char Choice = ReadInputs(">> Choose from the main menu: ")[0];
 
-  if (uint16_t(Choice) == 55) {
+  if (uint16_t(Choice) == 56) {
     MenuOperations(uint16_t(Choice) - 48);
   } else {
-    if (uint16_t(Choice) > 48 && uint16_t(Choice) <= 54) {
+    if (uint16_t(Choice) > 48 && uint16_t(Choice) <= 55) {
       MenuOperations(uint16_t(Choice) - 48);
       cout<<"\nHit enter to go back to main menu...\n";
       cin.get();
-      displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Delete Client, 6: Transactions, 7: Exit", true);
+      displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Delete Client, 6: Transactions, 7: User Manager, 8: Logout", true);
     } else cout<<"\n[Warning]>> That's not a choice in the main menu!\n";
   }
 }
 
 void SysTrigger()
 {
-  displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Delete Client, 6: Transactions, 7: Exit", true);
+  displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Delete Client, 6: Transactions, 7: User Manager, 8: Logout", true);
   while (true) {
     ChoicePicker();
   }

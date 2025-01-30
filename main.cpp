@@ -50,5 +50,6 @@ int main(void)
   
   
   SysTrigger();
+
   return (0);
 }
