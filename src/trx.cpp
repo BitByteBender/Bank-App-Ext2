@@ -17,7 +17,7 @@ void TrxMenu(uint16_t OperationChoice)
     DisplayTrxTable("-", 80, false);
     break;
   default:
-    cout<<"Nothing is built yet!"<<endl;
+    cout<<"\nHummm! Did you lose your map?"<<endl;
   }
 }
 
