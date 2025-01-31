@@ -6,7 +6,7 @@
 #include <cstdint>
 #include <vector>
 #include <fstream>
-
+#include <cmath>
 
 using std::cout;
 using std::cin;
@@ -48,4 +48,5 @@ void TrxMenu(uint16_t OperationChoice);
 void TrxMenuTrigger();
 
 void SysTrigger();
+void OnAuthentication();
 #endif /*CORE_H*/
