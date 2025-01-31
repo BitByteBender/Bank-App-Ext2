@@ -1,5 +1,6 @@
 #include "../headers/core.hpp"
 #include "../headers/displayLib.hpp"
+#include "../headers/user_handler.hpp"
 
 void MenuOperations(uint16_t OperationChoice)
 {
@@ -35,7 +36,8 @@ void MenuOperations(uint16_t OperationChoice)
     break;
   case (enOps::Logout):
     //This needs to be rerouted to a user login page
-    cout<<"System Terminated!"<<endl;
+    cout<<"Logout Successful!"<<endl;
+    OnAuthentication();
     exit(0);
   default:
     cout<<"Nothing Implemented Here\n"<<endl;
@@ -64,5 +66,20 @@ void SysTrigger()
   displayLib::DisplayMenuWrapper("x", 35, "Main Menu", 5, "1: Display Client List, 2: Insert New Client, 3: Update Client, 4: Find Client, 5: Delete Client, 6: Transactions, 7: User Manager, 8: Logout", true);
   while (true) {
     ChoicePicker();
+  }
+}
+
+void OnAuthentication()
+{
+  uint16_t i = 0;
+  
+  while (true) {
+    if (i == 3) break;
+    if (AuthenticateUser()) SysTrigger();
+    else {
+      ++i;
+      cout<<"Access Denied!\n[You have "
+	  <<abs(i-3)<<" attemtpts left!]"<<endl;
+    }
   }
 }

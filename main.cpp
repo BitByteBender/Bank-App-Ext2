@@ -1,6 +1,7 @@
 #include "headers/displayLib.hpp"
 #include "headers/handlers.hpp"
 #include "headers/core.hpp"
+#include "headers/user_handler.hpp"
 
 using displayLib::DisplayMenuWrapper;
 
@@ -49,7 +50,12 @@ int main(void)
   }
   
   
-  SysTrigger();
+  //SysTrigger();
+  /*
+  stUsers Usr = RecUsrData();
+  cout<<"\nUsername: "<<Usr.Username<<"\nPassword: "<<Usr.Passwd<<"\nPermissions: "<<Usr.Permissions<<endl;
+  */
 
+  OnAuthentication();
   return (0);
 }
