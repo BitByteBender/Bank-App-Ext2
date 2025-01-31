@@ -5,7 +5,7 @@
 
 string ReadInputs(const char *Msg);
 stClients RecordClientData(bool Trigger);
-
+stUsers RecUsrData();
 
 //Helpers
 string RecToLine(stClients Cl, string DELIM);
