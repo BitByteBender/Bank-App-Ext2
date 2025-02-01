@@ -29,7 +29,7 @@ bool FetchUsername(string Username)
   return (false);
 }*/
 
-stUsers FetchUsername(string Username)
+stUsers FetchUser(string Username)
 {
   stUsers Usr;
   vector <string> Users = AccNums("Users.txt"), Lines = LoadFromFile("Users.txt");
@@ -45,18 +45,54 @@ stUsers FetchUsername(string Username)
   return (Usr);
 }
 
-bool AuthenticateUser()
+int16_t GetPermission(string Username, string Passwd)
 {
-  string str = ReadInputs("Username: ");
-  stUsers Usr = FetchUsername(str);
+  stUsers Usr = FetchUser(Username);
   
-  if (Usr.Username == str) {
-    if (ReadInputs("Password: ") == Usr.Passwd) {
-      cout<<"You are In!\n"<<endl;
-      return (true);
-    }
+  if (Usr.Username == Username) {
+    if (Passwd ==  Usr.Passwd) return (Usr.Permissions);
   }
 
-  cout<<"You are out!\n"<<endl;
-  return (false);
+  return (-2);
+}
+
+bool AuthenticateUser(string Username, string Passwd)
+{
+  //string Usrname = ReadInputs("Username: "), Passwd = ReadInputs("Password: ");
+  return (GetPermission(Username, Passwd) < -1 ? false : true);
+}
+
+/*
+vector <uint16_t> RetrieveChoices(short Permissions)
+{
+  vector <uint16_t> vSpots;
+  short i = 0, Checker = Permissions;
+
+  for (i = 1; i <= 6; ++i) {
+    Checker = Permissions - pow(2, abs(7 - i));
+    if (Checker > -1) {
+      Permissions -= pow(2, abs(7 - i));
+      vSpots.push_back(abs(7 - i) + 1);
+    } else continue;
+  }
+  
+  return (vSpots);
+}
+*/
+
+string RetrieveChoicesV2(short Permissions)
+{
+  string strBinary;
+  short i = 0, Checker = Permissions;
+
+  for (i = 7; i >= 0; --i) {
+    Checker = Permissions - pow(2, abs(i));
+    if (Checker < 0) strBinary += '0';
+    else {
+      strBinary += '1';
+      Permissions -= pow(2, abs(i));
+    }
+  }
+  
+  return (strBinary);
 }
