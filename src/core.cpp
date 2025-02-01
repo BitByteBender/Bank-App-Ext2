@@ -58,7 +58,6 @@ void ChoicePicker(short Permissions)
   if (uint16_t(Choice) == 56) {
     MenuOperations(uint16_t(Choice) - 48);
   } else {
-    // missing Admin validations
     if (uint16_t(Choice) > 48 && uint16_t(Choice) <= 55 && (Validate[8 - (uint16_t(Choice) - 48)] == '1' || Permissions == -1)) {
       MenuOperations(uint16_t(Choice) - 48);
       cout<<"\nHit enter to go back to main menu...\n";
