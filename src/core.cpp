@@ -85,9 +85,9 @@ void OnAuthentication()
     if (i == 3) break;
     if (AuthenticateUser(Usrname, Passwd)) SysTrigger(FetchUser(Usrname));
     else {
-      ++i;
       cout<<"\nAccess Denied!\n[You have "
 	  <<abs(i-3)<<" attemtpts left!]"<<endl;
+      ++i;
     }
   }
 }
