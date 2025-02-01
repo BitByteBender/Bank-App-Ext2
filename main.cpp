@@ -57,5 +57,21 @@ int main(void)
   */
 
   OnAuthentication();
+  /*
+  vector <uint16_t> vSSpots = RetrieveChoices(8);
+  for (const uint16_t &s:vSSpots) {
+    cout<<s<<'\n';
+  }
+  cout<<RetrieveChoicesV2(20)<<'\n'<<RetrieveChoicesV2(8)<<'\n';
+  cout<<RetrieveChoicesV2(127)<<'\n'<<RetrieveChoicesV2(6)<<'\n';
+  cout<<RetrieveChoicesV2(98)<<'\n'<<RetrieveChoicesV2(3)<<'\n';
+  
+  string Validate = RetrieveChoicesV2(3);
+  cout<<Validate[8 - (uint16_t('2') - 48)]<<'\n'<<Validate[8 - (uint16_t('1') - 48)]<<'\n';
+
+  Validate = RetrieveChoicesV2(20);
+  cout<<Validate[8 - (uint16_t('2') - 48)]<<'\n'<<Validate[8 - (uint16_t('1') - 48)]<<'\n';
+  cout<<Validate[8 - (uint16_t('3') - 48)]<<'\n'<<Validate[8 - (uint16_t('5') - 48)]<<'\n';
+  */
   return (0);
 }
