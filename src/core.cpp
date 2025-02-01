@@ -59,7 +59,7 @@ void ChoicePicker(short Permissions)
     MenuOperations(uint16_t(Choice) - 48);
   } else {
     // missing Admin validations
-    if (uint16_t(Choice) > 48 && uint16_t(Choice) <= 55 && Validate[8 - (uint16_t(Choice) - 48)] == '1') {
+    if (uint16_t(Choice) > 48 && uint16_t(Choice) <= 55 && (Validate[8 - (uint16_t(Choice) - 48)] == '1' || Permissions == -1)) {
       MenuOperations(uint16_t(Choice) - 48);
       cout<<"\nHit enter to go back to main menu...\n";
       cin.get();
@@ -85,9 +85,9 @@ void OnAuthentication()
     if (i == 3) break;
     if (AuthenticateUser(Usrname, Passwd)) SysTrigger(FetchUser(Usrname));
     else {
-      ++i;
       cout<<"\nAccess Denied!\n[You have "
 	  <<abs(i-3)<<" attemtpts left!]"<<endl;
+      ++i;
     }
   }
 }
