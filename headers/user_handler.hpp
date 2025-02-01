@@ -4,8 +4,9 @@
 #include "core.hpp"
 
 stUsers LineToRec(vector <string> Line);
-stUsers FetchUsername(string Username);
-//stUsers GetUsername(string Username);
-bool AuthenticateUser();
-
+stUsers FetchUser(string Username);
+int16_t GetPermission(string, string);
+bool AuthenticateUser(string, string);
+vector <uint16_t> RetrieveChoices(short Permissions);
+string RetrieveChoicesV2(short Permissions);
 #endif /* USER_HANDLER */
