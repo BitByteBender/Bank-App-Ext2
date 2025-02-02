@@ -33,9 +33,9 @@ void MenuOperations(uint16_t OperationChoice)
   case (enOps::UsrManager):
     //Missing implementation
     cout<<"Still under development!\n"<<endl;
+    UserManagerTrigger();
     break;
   case (enOps::Logout):
-    //This needs to be rerouted to a user login page
     cout<<"Logout Successful!"<<endl;
     OnAuthentication();
     exit(0);

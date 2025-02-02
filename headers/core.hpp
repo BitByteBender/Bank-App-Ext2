@@ -22,6 +22,8 @@ enum enOps { View = 1, Insert = 2 , Update = 3, Find = 4, Delete = 5, Trx = 6, U
 
 enum enTrxOps { Deposit = 1, Withdraw = 2, ViewBalances = 3, TRXs = 4};
 
+enum enUsrManagerOps { ViewUsrs = 1, AddUsr = 2, DeleteUsr = 3, UpdateUsr = 4, FindUsr = 5};
+
 struct stClients
 {
   string AccNum;

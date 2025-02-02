@@ -137,3 +137,12 @@ uint16_t RecCounter(vector <string> &vRec)
 
   return (counter);
 }
+
+string RecToLine(stUsers Usr, string DELIM)
+{
+  string Line;
+
+  Line = Usr.Username + DELIM + Usr.Passwd + DELIM + to_string(Usr.Permissions);
+  
+  return (Line);
+}

@@ -68,7 +68,7 @@ stUsers RecUsrData()
   do {
     Usr.Username = ReadInputs(strMsg.c_str());
     
-    if (Usr.Username != "Admin" && Usr.Username != "admin") break;
+    if (Usr.Username != "Admin" && Usr.Username != "admin" && Usr.Username != FetchUser(Usr.Username).Username) break;
     else strMsg = "Username is already allocated! please, re-enter a new username: ";
     
   } while (true);
