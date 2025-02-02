@@ -9,4 +9,11 @@ int16_t GetPermission(string, string);
 bool AuthenticateUser(string, string);
 vector <uint16_t> RetrieveChoices(short Permissions);
 string RetrieveChoicesV2(short Permissions);
+
+//crud_ops
+void AddNewUsr();
+
+//core
+void UserManagerMenu(uint16_t OperationChoice);
+void UserManagerTrigger();
 #endif /* USER_HANDLER */
