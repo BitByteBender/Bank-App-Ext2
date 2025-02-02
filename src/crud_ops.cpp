@@ -111,6 +111,8 @@ void DeleteClient()
   MultiFunc("delete");
 }
 
+// Transactions Menu [Funcs]
+
 double CalcTrx(double NumA, double NumB)
 {
   return (NumA += NumB);
@@ -212,4 +214,22 @@ void WithdrawFromAccount()
   
   vNewRecs = RecsToLines(vClients);
   SaveRecToFile(vNewRecs, "0-Dupes_Clients.txt");
+}
+
+// User Manager Menu [Funcs]
+void AddNewUsr()
+{
+  vector <string> vUsrs;
+  char Choice = 'n';
+  stUsers Usr;
+  
+  do {
+    Usr = RecUsrData();
+    SaveSingleRecToFile(RecToLine(Usr, "#-#"), "Users.txt");
+    Choice = ReadInputs("Do you want to add more users(Y/N)? ")[0];
+    if (Choice == 'n' || Choice != 'N') {
+      cout<<"Breaking!\nChoice: "<<Choice<<'\n';
+      break;
+    }
+  } while (Choice == 'y' || Choice == 'Y');
 }

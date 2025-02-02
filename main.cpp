@@ -73,5 +73,7 @@ int main(void)
   cout<<Validate[8 - (uint16_t('2') - 48)]<<'\n'<<Validate[8 - (uint16_t('1') - 48)]<<'\n';
   cout<<Validate[8 - (uint16_t('3') - 48)]<<'\n'<<Validate[8 - (uint16_t('5') - 48)]<<'\n';
   */
+  //UserManagerMenu(2);
+  
   return (0);
 }
