@@ -56,7 +56,6 @@ int main(void)
   cout<<"\nUsername: "<<Usr.Username<<"\nPassword: "<<Usr.Passwd<<"\nPermissions: "<<Usr.Permissions<<endl;
   */
 
-  OnAuthentication();
   /*
   vector <uint16_t> vSSpots = RetrieveChoices(8);
   for (const uint16_t &s:vSSpots) {
@@ -74,6 +73,7 @@ int main(void)
   cout<<Validate[8 - (uint16_t('3') - 48)]<<'\n'<<Validate[8 - (uint16_t('5') - 48)]<<'\n';
   */
   //UserManagerMenu(2);
+  OnAuthentication();
   
   return (0);
 }
