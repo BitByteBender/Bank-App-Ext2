@@ -42,5 +42,19 @@ void DisplayTrxTable(const char *Style, uint16_t BorderCount, bool isActive=fals
       <<TabHeader<<'\n';
 
   TabTop = "| Account Number    | In/out          | Trx Type       | New Balance    ";
-  DisplayMultipleVMenuWrapperV2(Style, BorderCount, TabTop.c_str(), isActive);
+  DisplayMultipleVMenuWrapperV2("Trx", Style, BorderCount, TabTop.c_str(), isActive);
+}
+
+void DisplayUsrTable(const char *Style, uint16_t BorderCount, bool isActive=false)
+{
+  vector <string> vRec = LoadFromFile("Users.txt");
+  uint16_t UsrCount = RecCounter(vRec);
+
+  string TabTop, TabHeader = "Users List ("+to_string(UsrCount)+") Done.";
+
+  cout<<"\n\n"<<Spacer(CountStr(BorderCounter(Style, BorderCount)), CountStr(TabHeader))
+      <<TabHeader<<'\n';
+
+  TabTop = "| Username                | Password                 | Permissions    ";
+  DisplayMultipleVMenuWrapperV2("Usr", Style, BorderCount, TabTop.c_str(), isActive);
 }

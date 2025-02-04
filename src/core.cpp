@@ -31,8 +31,6 @@ void MenuOperations(uint16_t OperationChoice)
     TrxMenuTrigger();
     break;
   case (enOps::UsrManager):
-    //Missing implementation
-    cout<<"Still under development!\n"<<endl;
     UserManagerTrigger();
     break;
   case (enOps::Logout):
