@@ -40,6 +40,7 @@ struct stUsers
 
 void DisplayTable(const char *TableType, const char *Style, uint16_t BorderCount, bool isActive, bool Toggle);
 void DisplayTrxTable(const char *Style, uint16_t BorderCount, bool isActive);
+void DisplayUsrTable(const char *Style, uint16_t BorderCount, bool isActive);
 
 //Main Menu
 void MenuOperations(uint16_t OperationChoice);

@@ -119,17 +119,29 @@ namespace displayLib
  
     return (Ln);
   }
-  
-  vector <string> vTrx(vector <string> vLines)
+
+  string GetUsersLine(vector <string> Line)
   {
-    vector <string> vTrx;
+    string Ln;
+    
+    Ln = MenuSpacer(Line[0], 26);
+    Ln += MenuSpacer(Line[1], 27);
+    Ln += Line[2];
+    
+    return (Ln);
+  }
+  
+  vector <string> vGeneralMerger(vector <string> vLines, char Choice)
+  {
+    vector <string> vContainer;
     vector <string>::iterator iter;
 
     for (iter = vLines.begin(); iter != vLines.end(); iter++) {
-      vTrx.push_back(SplitChunks(SplitLine(*iter, "#-#")));
+      if (Choice == 'T') vContainer.push_back(SplitChunks(SplitLine(*iter, "#-#")));
+      else vContainer.push_back(GetUsersLine(SplitLine(*iter, "#-#")));
     }
 
-    return (vTrx);
+    return (vContainer);
   }
   
   void DisplayClientRecord(stClients Client, bool Trigger=false)
@@ -175,13 +187,18 @@ namespace displayLib
     cout<<BorderCounter(Style, BorderCount)<<endl;
   }
 
-  void DisplayMultipleVMenuWrapperV2(const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive=false)
+  void DisplayMultipleVMenuWrapperV2(const char *Func, const char *Style, uint16_t BorderCount, const char *HeaderName, bool isActive=false)
   {
-    vector <string> vTrx = displayLib::vTrx(LoadFromFile("0-Trx.txt"));
+    string keyword = "Trx";
+    vector <string> vContainer;    
     DisplayMenuTop(Style, BorderCount, HeaderName, isActive);
 
-    for (const string &r:vTrx) {
-      cout<<"  "<<r<<'\n';
+    if (Func == keyword.c_str()) {
+      vContainer = displayLib::vGeneralMerger(LoadFromFile("0-Trx.txt"), 'T');
+      for (const string &r:vContainer) cout<<"  "<<r<<'\n';
+    } else {
+      vContainer = displayLib::vGeneralMerger(LoadFromFile("Users.txt"), 'U');
+      for (const string &r:vContainer) cout<<"  "<<r<<'\n';
     }
     
     cout<<BorderCounter(Style, BorderCount)<<endl;
