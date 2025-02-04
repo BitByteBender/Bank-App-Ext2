@@ -227,7 +227,7 @@ void AddNewUsr()
     Usr = RecUsrData();
     SaveSingleRecToFile(RecToLine(Usr, "#-#"), "Users.txt");
     Choice = ReadInputs("Do you want to add more users(Y/N)? ")[0];
-    if (Choice == 'n' || Choice != 'N') {
+    if (Choice != 'y' && Choice != 'Y') {
       cout<<"Breaking!\nChoice: "<<Choice<<'\n';
       break;
     }
