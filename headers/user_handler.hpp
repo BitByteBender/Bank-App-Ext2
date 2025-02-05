@@ -12,6 +12,11 @@ string RetrieveChoicesV2(short Permissions);
 
 //crud_ops
 void AddNewUsr();
+bool FindUser(string);
+void DeleteUser(string);
+void CommitDeletion();
+void UpdateUser(string);
+void CommitUpdate();
 
 //core
 void UserManagerMenu(uint16_t OperationChoice);
