@@ -60,18 +60,22 @@ uint16_t ApproveAccess()
   return (PermissionsCount);
 }
 
-stUsers RecUsrData()
+stUsers RecUsrData(bool Trigger=false)
 {
   stUsers Usr;
-  string strMsg = "Enter a username: ";
+  string strMsg;
+  
+  if (Trigger == true) {
+    strMsg = "Enter a username: ";
 
-  do {
-    Usr.Username = ReadInputs(strMsg.c_str());
+    do {
+      Usr.Username = ReadInputs(strMsg.c_str());
     
-    if (Usr.Username != "Admin" && Usr.Username != "admin" && Usr.Username != FetchUser(Usr.Username).Username) break;
-    else strMsg = "Username is already allocated! please, re-enter a new username: ";
+      if (Usr.Username != "Admin" && Usr.Username != "admin" && Usr.Username != FetchUser(Usr.Username).Username) break;
+      else strMsg = "Username is already allocated! please, re-enter a new username: ";
     
-  } while (true);
+    } while (true);
+  }
   
   Usr.Passwd = ReadInputs("Enter a password: ");
 
