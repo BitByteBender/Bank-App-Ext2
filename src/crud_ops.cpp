@@ -1,7 +1,7 @@
 #include "../headers/handlers.hpp"
 #include "../headers/displayLib.hpp"
 #include "../headers/core.hpp"
-
+#include "../headers/user_handler.hpp"
 
 void InsertClients()
 {
@@ -224,7 +224,7 @@ void AddNewUsr()
   stUsers Usr;
   
   do {
-    Usr = RecUsrData();
+    Usr = RecUsrData(true);
     SaveSingleRecToFile(RecToLine(Usr, "#-#"), "Users.txt");
     Choice = ReadInputs("Do you want to add more users(Y/N)? ")[0];
     if (Choice != 'y' && Choice != 'Y') {
@@ -232,4 +232,71 @@ void AddNewUsr()
       break;
     }
   } while (Choice == 'y' || Choice == 'Y');
+}
+
+bool FindUser(string Usrname)
+{ 
+  if (FetchUser(Usrname).Username == Usrname) {
+    stUsers Usr = FetchUser(Usrname);
+    cout<<"Username: "<<Usr.Username<<'\n'
+	<<"Password: "<<Usr.Passwd<<'\n'
+	<<"Permissions: "<<Usr.Permissions<<endl;
+    return (1);
+  } else cout<<"\nNo user with Username: ["<<Usrname<<"] is found!\n"<<endl;
+  
+  return (0);
+}
+
+void DeleteUser(string Usrname)
+{
+  vector <string> vUsernames = AccNums("Users.txt"), vLoader;
+
+  if (FetchUser(Usrname).Username == Usrname) {
+    uint16_t i = 0;
+    for (const string &rec:vUsernames) {
+      if (rec != Usrname) vLoader.push_back(LoadFromFile("Users.txt")[i]);
+      i++;
+    }
+    SaveRecToFile(vLoader, "Users.txt");
+  }
+}
+
+void CommitDeletion()
+{
+  char Choice = 'n';
+  string Usrname = ReadInputs("Enter the Username you want to delete: ");
+
+  if (FindUser(Usrname)) {
+     Choice = ReadInputs("Do you want to delete this user(Y | N)? ")[0];
+     if (Choice == 'y' || Choice == 'Y') DeleteUser(Usrname);
+  }
+}
+
+void UpdateUser(string Usrname)
+{
+  vector <string> vUsernames = AccNums("Users.txt"), vLoader = LoadFromFile("Users.txt");
+
+  if (FetchUser(Usrname).Username == Usrname) {
+    uint16_t i = 0;
+    for (const string &rec:vUsernames) {
+      if (rec == Usrname) {
+	stUsers Usr = RecUsrData(false);
+	Usr.Username = rec;
+	vLoader[i] = RecToLine(Usr, "#-#");
+      }
+      i++;
+    }
+    SaveRecToFile(vLoader, "Users.txt");
+  }
+}
+
+void CommitUpdate()
+{
+  char Choice = 'n';
+  string Usrname = ReadInputs("Enter the Username you want to update: ");
+
+  if (FindUser(Usrname)) {
+     Choice = ReadInputs("Do you want to update this user(Y | N)? ")[0];
+     if (Choice == 'y' || Choice == 'Y') UpdateUser(Usrname);
+  }
 }

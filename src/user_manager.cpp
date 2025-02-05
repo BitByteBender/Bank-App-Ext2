@@ -5,6 +5,8 @@
 
 void UserManagerMenu(uint16_t OperationChoice)
 {
+  string Username;
+  
   switch (OperationChoice) {
   case (enUsrManagerOps::ViewUsrs):
     DisplayUsrTable("-", 75, false);
@@ -13,13 +15,14 @@ void UserManagerMenu(uint16_t OperationChoice)
     AddNewUsr();
     break;
   case (enUsrManagerOps::DeleteUsr):
-    cout<<"Nothing here\n";
+    CommitDeletion();
     break;
   case (enUsrManagerOps::UpdateUsr):
-    cout<<"Nothing here\n";
+    CommitUpdate();
     break;
   case (enUsrManagerOps::FindUsr):
-    cout<<"Nothing here\n";
+    Username = ReadInputs("Enter the username you want to check: ");
+    FindUser(Username);
     break;
   default:
     cout<<"Option is Not in User Manager menu!\n"<<endl;
